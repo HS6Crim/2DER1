@@ -6,6 +6,10 @@ public class Playermovement2 : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
+
+    public AudioClip jump;
+    AudioSource playerSFX; 
+
     public Transform groundCheckPoint;
     public float checkRadius = 0.2f;
     public LayerMask groundLayer;
@@ -15,6 +19,7 @@ public class Playermovement2 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerSFX = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -24,6 +29,7 @@ public class Playermovement2 : MonoBehaviour
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+            playerSFX.PlayOneShot(jump);
         }
     }
 
